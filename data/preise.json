@@ -1,0 +1,382 @@
+{
+  "13629": {
+    "stadt": "Berlin",
+    "fBrutto": 18.85674,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        13.74
+      ],
+      [
+        15000,
+        15.41
+      ],
+      [
+        50000,
+        20.41
+      ]
+    ]
+  },
+  "22047": {
+    "stadt": "Hamburg",
+    "fBrutto": 21.52234,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        17.57
+      ],
+      [
+        15000,
+        19.24
+      ],
+      [
+        50000,
+        24.24
+      ]
+    ]
+  },
+  "30627": {
+    "stadt": "Hannover",
+    "fBrutto": 17.42874,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        15.69
+      ],
+      [
+        15000,
+        17.36
+      ],
+      [
+        50000,
+        22.36
+      ]
+    ]
+  },
+  "32105": {
+    "stadt": "Bad Salzuflen",
+    "fBrutto": 20.65364,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        13.81
+      ],
+      [
+        15000,
+        15.47
+      ],
+      [
+        50000,
+        20.47
+      ]
+    ]
+  },
+  "32425": {
+    "stadt": "Minden",
+    "fBrutto": 16.71474,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        22.38
+      ],
+      [
+        15000,
+        24.05
+      ],
+      [
+        50000,
+        29.05
+      ]
+    ]
+  },
+  "32547": {
+    "stadt": "Bad Oeynhausen",
+    "fBrutto": 16.71474,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        22.38
+      ],
+      [
+        15000,
+        24.05
+      ],
+      [
+        50000,
+        29.05
+      ]
+    ]
+  },
+  "32549": {
+    "stadt": "Bad Oeynhausen",
+    "fBrutto": 16.71474,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        22.38
+      ],
+      [
+        15000,
+        24.05
+      ],
+      [
+        50000,
+        29.05
+      ]
+    ]
+  },
+  "33613": {
+    "stadt": "Bielefeld",
+    "fBrutto": 16.22684,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        17.38
+      ],
+      [
+        15000,
+        19.04
+      ],
+      [
+        50000,
+        24.04
+      ]
+    ]
+  },
+  "40625": {
+    "stadt": "Düsseldorf",
+    "fBrutto": 19.39224,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        11.62
+      ],
+      [
+        15000,
+        13.29
+      ],
+      [
+        50000,
+        18.29
+      ]
+    ]
+  },
+  "41747": {
+    "stadt": "Viersen",
+    "fBrutto": 17.55964,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        18.03
+      ],
+      [
+        15000,
+        19.7
+      ],
+      [
+        50000,
+        24.7
+      ]
+    ]
+  },
+  "41748": {
+    "stadt": "Viersen",
+    "fBrutto": 17.55964,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        18.03
+      ],
+      [
+        15000,
+        19.7
+      ],
+      [
+        50000,
+        24.7
+      ]
+    ]
+  },
+  "41749": {
+    "stadt": "Viersen",
+    "fBrutto": 17.55964,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        18.03
+      ],
+      [
+        15000,
+        19.7
+      ],
+      [
+        50000,
+        24.7
+      ]
+    ]
+  },
+  "49152": {
+    "stadt": "Bad Essen",
+    "fBrutto": 20.04674,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        18.4
+      ],
+      [
+        15000,
+        20.06
+      ],
+      [
+        50000,
+        25.06
+      ]
+    ]
+  },
+  "50823": {
+    "stadt": "Köln",
+    "fBrutto": 11.76434,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        25.31
+      ],
+      [
+        15000,
+        26.98
+      ],
+      [
+        50000,
+        31.98
+      ]
+    ]
+  },
+  "60311": {
+    "stadt": "Frankfurt",
+    "fBrutto": 20.96304,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        13.9
+      ],
+      [
+        15000,
+        15.57
+      ],
+      [
+        50000,
+        20.57
+      ]
+    ]
+  },
+  "70199": {
+    "stadt": "Stuttgart",
+    "fBrutto": 22.06974,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        15.89
+      ],
+      [
+        15000,
+        17.55
+      ],
+      [
+        50000,
+        22.55
+      ]
+    ]
+  },
+  "81371": {
+    "stadt": "München",
+    "fBrutto": 17.67864,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        16.71
+      ],
+      [
+        15000,
+        18.38
+      ],
+      [
+        50000,
+        23.37
+      ]
+    ]
+  },
+  "90441": {
+    "stadt": "Nürnberg",
+    "fBrutto": 17.07174,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        19.85
+      ],
+      [
+        15000,
+        21.52
+      ],
+      [
+        50000,
+        26.52
+      ]
+    ]
+  },
+  "04155": {
+    "stadt": "Leipzig",
+    "fBrutto": 15.08444,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        17.87
+      ],
+      [
+        15000,
+        19.54
+      ],
+      [
+        50000,
+        24.54
+      ]
+    ]
+  },
+  "01277": {
+    "stadt": "Dresden",
+    "fBrutto": 20.05864,
+    "eReststromBrutto": 13.09,
+    "grundpreisStaffel": [
+      [
+        2500,
+        13.41
+      ],
+      [
+        15000,
+        15.08
+      ],
+      [
+        50000,
+        20.08
+      ]
+    ]
+  }
+}

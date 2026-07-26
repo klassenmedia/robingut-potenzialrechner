@@ -1,0 +1,10 @@
+{
+  "name": "robingut-potenzialrechner",
+  "private": true,
+  "type": "module",
+  "description": "Statische Seite ohne Build-Step. package.json dient nur der Kennzeichnung als ES-Module-Projekt.",
+  "scripts": {
+    "test": "node tests/engine.test.mjs",
+    "fetch-preise": "node scripts/fetch-preise.mjs"
+  }
+}
