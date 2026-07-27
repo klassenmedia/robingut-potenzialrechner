@@ -78,3 +78,59 @@ details .grid{margin-top:10px;}
 
 .foot{font-size:11.5px;color:var(--muted);margin-top:20px;border-top:1px solid var(--line);padding-top:14px;}
 .hide{display:none !important;}
+
+.link-btn{border:0;background:transparent;color:var(--green-d);font-size:11.5px;font-weight:600;
+  padding:0;margin-top:4px;cursor:pointer;text-decoration:underline;}
+
+/* ---- Lastgang-Modul ---- */
+.lg-drop{background:#fbfdfb;border:1px dashed var(--line);border-radius:10px;padding:18px 16px;
+  text-align:center;cursor:pointer;transition:border-color .15s,background .15s;margin-top:6px;}
+.lg-drop:hover,.lg-drop.over{border-color:var(--green);background:var(--green-t);}
+.lg-drop:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+.lg-drop strong{display:block;font-weight:600;font-size:14px;}
+.lg-drop span{color:var(--muted);font-size:12.5px;}
+.lg-drop.filled{border-style:solid;border-color:var(--line);text-align:left;padding:12px 16px;}
+.lg-drop.filled strong{font-size:13px;font-weight:600;word-break:break-all;}
+
+.lg-units{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.lg-units .seg{margin-top:0;flex:none;display:inline-flex;}
+.lg-units .seg button{flex:none;padding:7px 16px;}
+
+.lg-alarm{margin-top:12px;padding:11px 13px;border-radius:8px;background:var(--rest-t);
+  border-left:3px solid #a33a1e;color:#a33a1e;font-size:13px;}
+.lg-alarm b{font-weight:700;}
+.lg-error{margin-top:12px;padding:11px 13px;border-radius:8px;background:var(--rest-t);
+  border-left:3px solid #a33a1e;color:#a33a1e;font-size:13px;}
+
+.lg-curve{background:#fbfdfb;border:1px solid var(--line);border-radius:10px;padding:0;
+  position:relative;overflow:hidden;margin-top:14px;}
+.lg-curve canvas{display:block;width:100%;height:220px;}
+.lg-readout{position:absolute;top:10px;left:12px;font-size:12px;color:var(--muted);
+  pointer-events:none;background:#fbfdfb;padding:2px 6px;font-variant-numeric:tabular-nums;}
+.lg-readout b{color:var(--fg);font-weight:700;}
+
+.lg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:14px;}
+.lg-cell{background:var(--card);padding:13px 14px;}
+.lg-cell dt{font-size:11.5px;color:var(--muted);margin:0 0 5px;}
+.lg-cell dd{margin:0;font-size:19px;font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--green-d);}
+.lg-cell dd em{font-style:normal;font-size:11.5px;color:var(--muted);margin-left:3px;font-weight:600;}
+.lg-cell .alt{font-size:11.5px;color:var(--muted);margin-top:3px;font-variant-numeric:tabular-nums;}
+
+.lg-price{background:var(--fg);color:#fff;border-radius:10px;padding:18px 18px;
+  display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;margin-top:6px;}
+.lg-price .lbl{font-size:11.5px;color:#b7c7bb;margin-bottom:6px;}
+.lg-price .big{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;}
+.lg-price .alt{font-size:12px;color:#b7c7bb;margin-top:6px;}
+.lg-price .med{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;}
+
+.lg-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
+  border-radius:10px;font-size:13px;margin-top:14px;overflow:hidden;}
+.lg-table th,.lg-table td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--line);}
+.lg-table tr:last-child td{border-bottom:0;}
+.lg-table th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+.lg-table td.num{font-variant-numeric:tabular-nums;}
+.lg-match{color:var(--green-d);font-size:12.5px;font-weight:700;}
+.lg-mismatch{color:#a33a1e;font-size:12.5px;font-weight:700;}
+
+.lg-fahrplan{margin-top:14px;padding:13px 14px;background:#fbfdfb;border:1px solid var(--line);border-radius:10px;}

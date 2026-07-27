@@ -64,8 +64,9 @@
       <div class="grid">
         <div>
           <div class="field">
-            <div class="lab"><b>Jahresverbrauch</b></div>
+            <div class="lab"><b>Jahresverbrauch</b><span class="v hide" id="verbrauchAbgeleitetTag">aus Lastgang</span></div>
             <div class="unit"><input class="in" id="verbrauch" type="number" step="any" value="15000"><span class="u">kWh</span></div>
+            <button type="button" class="link-btn hide" id="lastgangReset">Verknüpfung lösen &amp; wieder manuell eingeben</button>
           </div>
           <div id="regimeBadge"></div>
           <div class="field">
@@ -86,6 +87,52 @@
           </div>
         </div>
       </div>
+
+      <details id="lastgangDetails">
+        <summary>Oder Lastgang-CSV einlesen (empfohlen ab 100.000 kWh)</summary>
+        <div class="lg-drop" id="lgDrop" tabindex="0" role="button" aria-label="Lastgang-CSV auswählen">
+          <strong>Lastgang-CSV hierher ziehen oder klicken</strong>
+          <span>Zeit;Wert, Semikolon-getrennt — die Datei wird nicht hochgeladen, alles bleibt im Browser</span>
+        </div>
+        <input type="file" id="lgFile" accept=".csv,text/csv" class="hide">
+
+        <div class="lg-units">
+          <span class="note">Einheit der Werte:</span>
+          <div class="seg" id="lgUnitSeg" role="group" aria-label="Einheit">
+            <button type="button" data-unit="MW" class="on">MW</button>
+            <button type="button" data-unit="kWh">kWh</button>
+          </div>
+          <span class="note" id="lgDetected"></span>
+        </div>
+        <div class="lg-alarm hide" id="lgUnitAlarm"></div>
+        <div class="lg-alarm hide" id="lgPlausibelAlarm"></div>
+        <div class="lg-error hide" id="lgError"></div>
+
+        <div class="hide" id="lgResult">
+          <div class="lg-curve">
+            <canvas id="lgChart"></canvas>
+            <div class="lg-readout" id="lgReadout">Zeiger über die Kurve bewegen</div>
+          </div>
+          <div class="lg-grid" id="lgStats"></div>
+
+          <details id="lgCalcDetails">
+            <summary>Bepreisungs-Abgleich einblenden (intern, für Akquisegespräche)</summary>
+            <div class="lg-drop" id="lgDropCalc" tabindex="0" role="button" aria-label="Bepreisungs-CSV auswählen">
+              <strong>Bepreisungs-CSV hierher ziehen oder klicken</strong>
+              <span>die Ergebnisdatei aus dem Energieunion-Portal</span>
+            </div>
+            <input type="file" id="lgFileCalc" accept=".csv,text/csv" class="hide">
+            <div class="hide" id="lgPriceBlock">
+              <div class="lg-price" id="lgPriceCard"></div>
+              <table class="lg-table" id="lgCompare"></table>
+            </div>
+            <div class="lg-fahrplan hide" id="lgFahrplanBlock">
+              <div class="lab"><b>Fahrplanpreis vom Server</b></div>
+              <div id="lgFahrplanStatus" class="note">noch nicht verfügbar</div>
+            </div>
+          </details>
+        </div>
+      </details>
     </div>
 
     <!-- Schritt 3: Erzeugung -->

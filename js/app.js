@@ -1,4 +1,5 @@
 import { berechneVerbraucher, berechneErzeuger, netto, regime } from "./engine.js";
+import { initLastgangUI } from "./lastgang-ui.js";
 
 const $ = (id) => document.getElementById(id);
 const val = (id) => {
@@ -10,7 +11,7 @@ const de = (n, d = 2) =>
 const eur = (n) => de(n) + " €";
 const ct = (n) => de(n) + " ct";
 
-const S = { rolle: "verbraucher", rf: "privat", preistabelle: null };
+const S = { rolle: "verbraucher", rf: "privat", preistabelle: null, lastgang: null };
 
 async function ladePreistabelle() {
   try {
@@ -42,6 +43,23 @@ function plzLookup() {
     statusEl.textContent = "Keine Regionaldaten für diese PLZ — Referenzwerte (Viersen) eingetragen, bitte prüfen.";
     statusEl.className = "plz-status fallback";
   }
+}
+
+let setzeVerbrauchProgrammatisch = false;
+
+function markiereAlsAbgeleitet(verbrauchKwh) {
+  setzeVerbrauchProgrammatisch = true;
+  $("verbrauch").value = Math.round(verbrauchKwh);
+  setzeVerbrauchProgrammatisch = false;
+  $("verbrauchAbgeleitetTag").classList.remove("hide");
+  $("lastgangReset").classList.remove("hide");
+  calc();
+}
+
+function loeseLastgangVerknuepfung() {
+  $("verbrauchAbgeleitetTag").classList.add("hide");
+  $("lastgangReset").classList.add("hide");
+  if (S.lastgang) S.lastgang.clearLastgangLink();
 }
 
 function vis() {
@@ -197,11 +215,21 @@ function bindEvents() {
     calc();
   });
 
+  $("verbrauch").addEventListener("input", () => {
+    // Manuelle Änderung löst die Lastgang-Verknüpfung (Handover §6.1) — außer
+    // das Feld wird gerade programmatisch aus dem Lastgang-Modul selbst befüllt.
+    if (!setzeVerbrauchProgrammatisch) loeseLastgangVerknuepfung();
+    calc();
+  });
+
+  $("lastgangReset").addEventListener("click", () => {
+    loeseLastgangVerknuepfung();
+  });
+
   [
     "F",
     "eReststrom",
     "grundpreis",
-    "verbrauch",
     "eCommunity",
     "m",
     "istPrice",
@@ -216,6 +244,7 @@ function bindEvents() {
 async function init() {
   await ladePreistabelle();
   bindEvents();
+  S.lastgang = initLastgangUI({ onVerbrauchChange: markiereAlsAbgeleitet });
   plzLookup();
   vis();
   calc();
