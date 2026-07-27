@@ -42,8 +42,12 @@ export function parseLastgang(text) {
   const head = splitRow(lines[0]);
   let headerUnit = null;
   const h = head.join(" ").toLowerCase();
+  // Reihenfolge wichtig: "kwh" vor "kw" prüfen, sonst matcht "kw" zuerst in "kwh".
+  // "kw" zusätzlich erkannt (echte Portal-Einheit, siehe robingut-bepreisung
+  // portalEinheit()) und wie "kWh" behandelt — beides läuft durch denselben
+  // Leistungs-Rechenzweig in computeStats (Division durch 1000/dt).
   if (/\bmw\b/.test(h)) headerUnit = "MW";
-  else if (/kwh/.test(h)) headerUnit = "kWh";
+  else if (/kwh/.test(h) || /\bkw\b/.test(h)) headerUnit = "kWh";
 
   const startsWithData = /^\d{2}\.\d{2}\.\d{4}/.test(head[0] || "");
   const rows = [];

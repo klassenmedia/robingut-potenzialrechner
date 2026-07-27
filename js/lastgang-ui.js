@@ -40,9 +40,14 @@ export function initLastgangUI({ onVerbrauchChange }) {
   const readout = $("lgReadout");
 
   function setUnit(u) {
-    state.unit = u;
+    // state.unit bleibt "MW" | "kWh" — exakt die Werte, die computeStats() erwartet
+    // (kWh = Energiemenge je Zeile, wird durch die Intervalllänge geteilt). Der
+    // Button-data-unit ist "kW" (passt zur echten Portal-Einheit bei
+    // robingut-bepreisung), hier auf "kWh" zurücknormiert.
+    state.unit = u === "kW" ? "kWh" : u;
     document.querySelectorAll("#lgUnitSeg button").forEach((b) => {
-      b.classList.toggle("on", b.dataset.unit === u);
+      const btnUnit = b.dataset.unit === "kW" ? "kWh" : b.dataset.unit;
+      b.classList.toggle("on", btnUnit === state.unit);
     });
   }
 
@@ -167,7 +172,7 @@ export function initLastgangUI({ onVerbrauchChange }) {
     const detected = $("lgDetected");
     detected.textContent = state.headerUnit
       ? "In der Kopfzeile steht: " + state.headerUnit
-      : "Keine Einheit in der Kopfzeile gefunden";
+      : "Keine Einheit in der Kopfzeile gefunden — es gilt Ihre Auswahl oben";
 
     const unitBox = $("lgUnitAlarm");
     if (checkUnitMismatch(state.headerUnit, state.unit)) {
@@ -288,7 +293,9 @@ export function initLastgangUI({ onVerbrauchChange }) {
     state.rows = rows;
     state.headerUnit = headerUnit;
     state.fromLastgang = true;
-    if (headerUnit) setUnit(headerUnit); // Kopfzeile gewinnt beim ersten Einlesen
+    // Die vor dem Upload gewählte Einheit bleibt maßgeblich (viele Dateien
+    // haben keine Kopfzeile — dann gibt es nichts zum automatisch Erkennen).
+    // Widerspricht die Kopfzeile der Auswahl, warnt checkUnit() in refresh().
     refresh(true);
   });
 

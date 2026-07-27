@@ -90,20 +90,23 @@
 
       <details id="lastgangDetails">
         <summary>Oder Lastgang-CSV einlesen (empfohlen ab 100.000 kWh)</summary>
-        <div class="lg-drop" id="lgDrop" tabindex="0" role="button" aria-label="Lastgang-CSV auswählen">
-          <strong>Lastgang-CSV hierher ziehen oder klicken</strong>
+
+        <div class="lg-units">
+          <span class="note"><b>1.</b> Einheit der Werte in Ihrer Datei wählen:</span>
+          <div class="seg" id="lgUnitSeg" role="group" aria-label="Einheit">
+            <button type="button" data-unit="MW" class="on">MWh</button>
+            <button type="button" data-unit="kW">kWh</button>
+          </div>
+          <span class="note" id="lgDetected"></span>
+        </div>
+        <div class="note" style="margin-top:4px">Viele Lastgang-Dateien haben keine Kopfzeile mit Einheit — bitte vor dem Hochladen prüfen und hier auswählen.</div>
+
+        <div class="lg-drop" id="lgDrop" tabindex="0" role="button" aria-label="Lastgang-CSV auswählen" style="margin-top:14px">
+          <strong>2. Lastgang-CSV hierher ziehen oder klicken</strong>
           <span>Zeit;Wert, Semikolon-getrennt — die Datei wird nicht hochgeladen, alles bleibt im Browser</span>
         </div>
         <input type="file" id="lgFile" accept=".csv,text/csv" class="hide">
 
-        <div class="lg-units">
-          <span class="note">Einheit der Werte:</span>
-          <div class="seg" id="lgUnitSeg" role="group" aria-label="Einheit">
-            <button type="button" data-unit="MW" class="on">MW</button>
-            <button type="button" data-unit="kWh">kWh</button>
-          </div>
-          <span class="note" id="lgDetected"></span>
-        </div>
         <div class="lg-alarm hide" id="lgUnitAlarm"></div>
         <div class="lg-alarm hide" id="lgPlausibelAlarm"></div>
         <div class="lg-error hide" id="lgError"></div>

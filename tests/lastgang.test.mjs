@@ -39,6 +39,20 @@ function nahe(actual, expected, tolerance, label) {
 
   const unbekannt = parseLastgang('"Zeit";"Wert"\n"01.10.2026 00:00";"1,455"\n"01.10.2026 01:00";"1,413"\n');
   assert.equal(unbekannt.headerUnit, null, "Kopfzeile ohne Einheit -> null");
+
+  const kw = parseLastgang('"Zeit";"Wert in kW"\n"01.10.2026 00:00";"1455"\n"01.10.2026 01:00";"1413"\n');
+  assert.equal(kw.headerUnit, "kWh", "Kopfzeile 'Wert in kW' (echte Portal-Einheit) wie kWh behandelt");
+}
+
+// --- Datei ganz ohne Kopfzeile: nur Zeitstempel + Zahl, keine Titelzeile ---
+// Viele echte Lastgang-Exporte haben keine Kopfzeile — der Parser muss die
+// erste Zeile dann korrekt als Datenzeile erkennen (nicht als Kopfzeile
+// überspringen) und headerUnit bleibt null (nichts zu erkennen).
+{
+  const ohneKopf = parseLastgang('"01.10.2026 00:00";"1,455"\n"01.10.2026 01:00";"1,413"\n"01.10.2026 02:00";"1,200"\n');
+  assert.equal(ohneKopf.headerUnit, null, "Datei ohne Kopfzeile -> headerUnit null (nichts zu erkennen)");
+  assert.equal(ohneKopf.rows.length, 3, "alle drei Datenzeilen erkannt, keine als Kopfzeile verworfen");
+  assert.equal(ohneKopf.rows[0].v, 1.455, "erste Datenzeile korrekt geparst (nicht übersprungen)");
 }
 
 // --- Beispiel aus Handover §3.1 exakt nachgebildet ---
