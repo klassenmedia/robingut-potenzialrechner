@@ -234,10 +234,14 @@ export function initLastgangUI({ onVerbrauchChange }) {
     if (!state.rows) return;
     state.stats = computeStats(state.rows, state.unit);
     renderStats();
+    // Sichtbar machen VOR dem Zeichnen: solange #lgResult noch "hide" trägt
+    // (display:none), hat der Canvas clientWidth/clientHeight = 0 und
+    // drawChart() zeichnet ins Leere — die Kurve blieb bis zum nächsten
+    // Refresh (z.B. Einheiten-Klick) unsichtbar.
+    $("lgResult").classList.remove("hide");
     drawChart();
     checkUnit();
     compare();
-    $("lgResult").classList.remove("hide");
 
     if (uebernehmen && onVerbrauchChange) onVerbrauchChange(state.stats.energyMWh * 1000);
   }
