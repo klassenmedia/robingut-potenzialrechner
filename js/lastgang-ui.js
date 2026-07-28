@@ -297,9 +297,10 @@ export function initLastgangUI({ onVerbrauchChange }) {
     state.rows = rows;
     state.headerUnit = headerUnit;
     state.fromLastgang = true;
-    // Die vor dem Upload gewählte Einheit bleibt maßgeblich (viele Dateien
-    // haben keine Kopfzeile — dann gibt es nichts zum automatisch Erkennen).
-    // Widerspricht die Kopfzeile der Auswahl, warnt checkUnit() in refresh().
+    // Kopfzeile gewinnt beim ersten Einlesen (steht dort "Wert in MW"/"Wert in
+    // kW/kWh", wird die Auswahl automatisch gesetzt). Viele Dateien haben aber
+    // keine Kopfzeile — dann bleibt die zuvor gewählte Einheit maßgeblich.
+    if (headerUnit) setUnit(headerUnit);
     refresh(true);
   });
 
