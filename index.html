@@ -179,25 +179,44 @@
 
     <!-- Ergebnis Verbraucher -->
     <div class="out" id="outVerbrauch">
-      <div class="biglab">Ihre voraussichtliche Ersparnis</div>
-      <div class="big"><span id="save">–</span> <small>/Jahr</small></div>
-      <div class="sub">bei <span id="blended">–</span> ct/kWh statt aktuell <span id="istPriceOut">–</span> ct/kWh</div>
-      <div class="bars">
-        <div class="bar"><div class="e" id="barCE" style="background:var(--green)"></div><div class="b" id="barCB"></div>
-          <div class="bcap">Community<b id="capC"></b></div></div>
-        <div class="bar"><div class="e" id="barRE" style="background:var(--rest)"></div><div class="b" id="barRB"></div>
-          <div class="bcap">Reststrom<b id="capR"></b></div></div>
+      <div class="result-head">
+        <div>
+          <div class="biglab">Ihre voraussichtliche Ersparnis</div>
+          <div class="big"><span id="save">–</span> <small>/Jahr</small></div>
+        </div>
+        <div class="kenndaten">
+          <div class="kd"><dt>Arbeitspreis</dt><dd><span id="blended">–</span> <em>ct/kWh</em></dd></div>
+          <div class="kd"><dt>Grundpreis</dt><dd><span id="grundAnnualM">–</span> <em>€/Monat</em></dd></div>
+          <div class="kd"><dt>Zahle im Monat</dt><dd><span id="totalMonthly">–</span> <em>€</em></dd></div>
+        </div>
       </div>
-      <div class="legend">
-        <span><i style="background:var(--green)"></i>Community-Energie</span>
-        <span><i style="background:var(--rest)"></i>Reststrom-Energie</span>
-        <span><i style="background:var(--netz-t)"></i>Netz &amp; Umlagen</span>
+      <div class="sub">statt aktuell <span id="istPriceOut">–</span> ct/kWh</div>
+
+      <div class="preis-bloecke">
+        <div class="pb pb-tot"><dt>Kumulierter Preis</dt><dd id="pbKumuliert">–</dd></div>
+        <div class="pb"><dt>Community-Preis</dt><dd id="pbCommunity">–</dd></div>
+        <div class="pb"><dt>Reststrom-Preis</dt><dd id="pbReststrom">–</dd></div>
       </div>
-      <div style="margin-top:12px">
-        <div class="row"><span>Energiekosten / Jahr</span><span class="n" id="energyAnnual"></span></div>
-        <div class="row"><span>Grundpreis / Jahr</span><span class="n" id="grundAnnual"></span></div>
-        <div class="row tot"><span>Jahreskosten gesamt</span><span class="n" id="totalAnnual"></span></div>
-      </div>
+
+      <details id="ergebnisDetails">
+        <summary>Details zur Berechnung anzeigen</summary>
+        <div class="bars">
+          <div class="bar"><div class="e" id="barCE" style="background:var(--green)"></div><div class="b" id="barCB"></div>
+            <div class="bcap">Community<b id="capC"></b></div></div>
+          <div class="bar"><div class="e" id="barRE" style="background:var(--rest)"></div><div class="b" id="barRB"></div>
+            <div class="bcap">Reststrom<b id="capR"></b></div></div>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--green)"></i>Community-Energie</span>
+          <span><i style="background:var(--rest)"></i>Reststrom-Energie</span>
+          <span><i style="background:var(--netz-t)"></i>Netz &amp; Umlagen</span>
+        </div>
+        <div style="margin-top:12px">
+          <div class="row"><span>Energiekosten / Jahr</span><span class="n" id="energyAnnual"></span></div>
+          <div class="row"><span>Grundpreis / Jahr</span><span class="n" id="grundAnnual"></span></div>
+          <div class="row tot"><span>Jahreskosten gesamt</span><span class="n" id="totalAnnual"></span></div>
+        </div>
+      </details>
     </div>
 
     <!-- Ergebnis Einspeiser -->

@@ -126,8 +126,19 @@ function calc() {
   saveEl.textContent = eur(f(result.ersparnis));
   saveEl.style.color = result.ersparnis >= 0 ? "var(--green-d)" : "#b23b3b";
 
+  // Kenndaten-Zeile (Verivox-Vorbild): Arbeitspreis, Grundpreis, Monatskosten
+  // sofort sichtbar statt hinter einem Klick versteckt.
+  $("grundAnnualM").textContent = de(f(gp));
+  $("totalMonthly").textContent = de(f(result.gesamt / 12));
+
   const cPrice = F + eC;
   const rPrice = F + eR;
+
+  // Drei Preis-Blöcke: kumuliert (Mischpreis), Community, Reststrom (Team-Feedback).
+  $("pbKumuliert").textContent = ct(f(result.preisCt));
+  $("pbCommunity").textContent = ct(f(cPrice));
+  $("pbReststrom").textContent = ct(f(rPrice));
+
   const maxP = Math.max(cPrice, rPrice, 1);
   const px = (v) => (v / maxP) * 108;
   $("barCE").style.height = px(eC) + "px";
