@@ -30,14 +30,32 @@
       </div>
     </div>
 
-    <!-- Schritt 2: Region -->
-    <div class="step">
-      <h2><span class="num">2</span>Ihre Region</h2>
-      <div class="field">
-        <div class="lab"><b>Postleitzahl</b></div>
-        <input class="in" id="plz" type="text" inputmode="numeric" maxlength="5" value="41749" placeholder="z.B. 41749">
-        <div class="plz-status" id="plzStatus"></div>
+    <!-- Schritt 2: Ihre Daten (PLZ, Verbrauch, Arbeitspreis zusammen — Team-Feedback) -->
+    <div class="step" id="stepVerbrauch">
+      <h2><span class="num">2</span>Ihre Daten</h2>
+      <div class="grid">
+        <div>
+          <div class="field">
+            <div class="lab"><b>Postleitzahl</b></div>
+            <input class="in" id="plz" type="text" inputmode="numeric" maxlength="5" value="41749" placeholder="z.B. 41749">
+            <div class="plz-status" id="plzStatus"></div>
+          </div>
+        </div>
+        <div>
+          <div class="field">
+            <div class="lab"><b>Jahresverbrauch</b><span class="v hide" id="verbrauchAbgeleitetTag">aus Lastgang</span></div>
+            <div class="unit"><input class="in" id="verbrauch" type="number" step="any" value="2500"><span class="u">kWh</span></div>
+            <button type="button" class="link-btn hide" id="lastgangReset">Verknüpfung lösen &amp; wieder manuell eingeben</button>
+          </div>
+          <div id="regimeBadge"></div>
+          <div class="field">
+            <div class="lab"><b>Ihr aktueller Arbeitspreis</b></div>
+            <div class="unit"><input class="in" id="istPrice" type="number" step="any" value="35"><span class="u">ct/kWh</span></div>
+            <div class="note">Der Preis Ihres jetzigen Stromvertrags (siehe letzte Stromrechnung) — nur damit lässt sich Ihre Ersparnis korrekt berechnen. Der voreingestellte Wert ist ein Platzhalter.</div>
+          </div>
+        </div>
       </div>
+
       <details id="preisDetails">
         <summary>Preisbausteine anpassen</summary>
         <div class="grid">
@@ -58,22 +76,10 @@
       </details>
     </div>
 
-    <!-- Schritt 3: Verbrauch -->
-    <div class="step" id="stepVerbrauch">
-      <h2><span class="num">3</span>Ihr Verbrauch</h2>
+    <!-- Schritt 3: Community-Einstellungen -->
+    <div class="step" id="stepCommunity">
+      <h2><span class="num">3</span>Ihre Community-Einstellungen</h2>
       <div class="grid">
-        <div>
-          <div class="field">
-            <div class="lab"><b>Jahresverbrauch</b><span class="v hide" id="verbrauchAbgeleitetTag">aus Lastgang</span></div>
-            <div class="unit"><input class="in" id="verbrauch" type="number" step="any" value="15000"><span class="u">kWh</span></div>
-            <button type="button" class="link-btn hide" id="lastgangReset">Verknüpfung lösen &amp; wieder manuell eingeben</button>
-          </div>
-          <div id="regimeBadge"></div>
-          <div class="field">
-            <div class="lab"><b>Ihr aktueller Arbeitspreis</b></div>
-            <div class="unit"><input class="in" id="istPrice" type="number" step="any" value="35"><span class="u">ct/kWh</span></div>
-          </div>
-        </div>
         <div>
           <div class="field">
             <div class="lab"><b>Community-Verkaufspreis</b><span class="v"><span id="eCommunityV">9,46</span> ct/kWh</span></div>

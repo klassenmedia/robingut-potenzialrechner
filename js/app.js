@@ -64,8 +64,13 @@ function loeseLastgangVerknuepfung() {
 
 function vis() {
   const r = S.rolle;
-  $("stepVerbrauch").classList.toggle("hide", !(r === "verbraucher" || r === "prosument"));
-  $("outVerbrauch").classList.toggle("hide", !(r === "verbraucher" || r === "prosument"));
+  const zeigtVerbrauch = r === "verbraucher" || r === "prosument";
+  // "Ihre Daten" (PLZ, Jahresverbrauch, Arbeitspreis) UND "Community-
+  // Einstellungen" nur für Verbraucher/Prosument — Einspeiser braucht laut
+  // Team-Feedback weder PLZ/Region noch die Community-Regler.
+  $("stepVerbrauch").classList.toggle("hide", !zeigtVerbrauch);
+  $("stepCommunity").classList.toggle("hide", !zeigtVerbrauch);
+  $("outVerbrauch").classList.toggle("hide", !zeigtVerbrauch);
   $("stepErzeugung").classList.toggle("hide", !(r === "einspeiser" || r === "prosument"));
   $("outErzeugung").classList.toggle("hide", !(r === "einspeiser" || r === "prosument"));
   $("outProsument").classList.toggle("hide", r !== "prosument");
