@@ -37,7 +37,7 @@ function plzLookup() {
       if (verbrauch >= stufe && preis != null) grundpreis = preis;
     }
     $("grundpreis").value = grundpreis;
-    statusEl.textContent = `✓ ${eintrag.stadt} — regionale Netzentgelte geladen`;
+    statusEl.textContent = `✓ ${eintrag.stadt} — Regionaldaten geladen`;
     statusEl.className = "plz-status ok";
   } else {
     statusEl.textContent = "Keine Regionaldaten für diese PLZ — Referenzwerte (Viersen) eingetragen, bitte prüfen.";
@@ -129,7 +129,9 @@ function calc() {
   $("totalAnnual").textContent = eur(f(result.gesamt));
   const saveEl = $("save");
   saveEl.textContent = eur(f(result.ersparnis));
-  saveEl.style.color = result.ersparnis >= 0 ? "var(--green-d)" : "#b23b3b";
+  // Ersparnis steht auf der dunklen Ergebniskarte — helle Limette bzw. helles
+  // Rot, damit der Wert dort lesbar bleibt (Kontrast >4.5:1 geprüft).
+  saveEl.style.color = result.ersparnis >= 0 ? "#c9ee6a" : "#ffc2b8";
 
   // Kenndaten-Zeile (Verivox-Vorbild): Arbeitspreis, Grundpreis, Monatskosten
   // sofort sichtbar statt hinter einem Klick versteckt.

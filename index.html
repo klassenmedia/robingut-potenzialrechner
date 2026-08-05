@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Robin Gut Strom · Potenzialrechner</title>
+<title>ROBIN GUT Strom · Potenzialrechner</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <div class="wrap">
 
   <div class="head">
-    <div class="title">Robin <span>Gut</span> Strom · Potenzialrechner</div>
+    <div class="title">ROBIN <span>GUT</span> Strom · Potenzialrechner</div>
     <div class="tag">Unverbindliche Indikation · Werte <span id="modeLab">brutto</span></div>
   </div>
 
@@ -33,28 +33,28 @@
     <!-- Schritt 2: Ihre Daten (PLZ, Verbrauch, Arbeitspreis zusammen — Team-Feedback) -->
     <div class="step" id="stepVerbrauch">
       <h2><span class="num">2</span>Ihre Daten</h2>
-      <div class="grid">
-        <div>
-          <div class="field">
-            <div class="lab"><b>Postleitzahl</b></div>
-            <input class="in" id="plz" type="text" inputmode="numeric" maxlength="5" value="41749" placeholder="z.B. 41749">
-            <div class="plz-status" id="plzStatus"></div>
-          </div>
+      <div class="grid grid-primary">
+        <div class="field">
+          <div class="lab"><b>Postleitzahl</b></div>
+          <input class="in" id="plz" type="text" inputmode="numeric" maxlength="5" value="41749" placeholder="z.B. 41749">
+          <div class="plz-status" id="plzStatus"></div>
         </div>
-        <div>
-          <div class="field">
-            <div class="lab"><b>Jahresverbrauch</b><span class="v hide" id="verbrauchAbgeleitetTag">aus Lastgang</span></div>
-            <div class="unit"><input class="in" id="verbrauch" type="number" step="any" value="2500"><span class="u">kWh</span></div>
-            <button type="button" class="link-btn hide" id="lastgangReset">Verknüpfung lösen &amp; wieder manuell eingeben</button>
-          </div>
-          <div id="regimeBadge"></div>
-          <div class="field">
-            <div class="lab"><b>Ihr aktueller Arbeitspreis</b></div>
-            <div class="unit"><input class="in" id="istPrice" type="number" step="any" value="35"><span class="u">ct/kWh</span></div>
-            <div class="note">Der Preis Ihres jetzigen Stromvertrags (siehe letzte Stromrechnung) — nur damit lässt sich Ihre Ersparnis korrekt berechnen. Der voreingestellte Wert ist ein Platzhalter.</div>
-          </div>
+        <div class="field">
+          <div class="lab"><b>Jahresverbrauch</b><span class="v hide" id="verbrauchAbgeleitetTag">aus Lastgang</span></div>
+          <div class="unit"><input class="in" id="verbrauch" type="number" step="any" value="2500"><span class="u">kWh</span></div>
+          <button type="button" class="link-btn hide" id="lastgangReset">Verknüpfung lösen &amp; wieder manuell eingeben</button>
         </div>
       </div>
+      <div id="regimeBadge"></div>
+
+      <details id="ersparnisDetails">
+        <summary>Ihre Ersparnis anzeigen (optional — Ihr aktueller Strompreis)</summary>
+        <div class="field">
+          <div class="lab"><b>Ihr aktueller Strompreis</b></div>
+          <div class="unit"><input class="in" id="istPrice" type="number" step="any" value="35"><span class="u">ct/kWh</span></div>
+          <div class="note">Der Gesamtpreis Ihres jetzigen Stromvertrags inkl. aller Nebenkosten (siehe letzte Stromrechnung) — nur damit lässt sich Ihre Ersparnis berechnen. Der voreingestellte Wert ist ein Platzhalter.</div>
+        </div>
+      </details>
 
       <details id="preisDetails">
         <summary>Preisbausteine anpassen</summary>
@@ -187,16 +187,22 @@
     <div class="out" id="outVerbrauch">
       <div class="result-head">
         <div>
-          <div class="biglab">Ihre voraussichtliche Ersparnis</div>
-          <div class="big"><span id="save">–</span> <small>/Jahr</small></div>
+          <div class="biglab">Ihr voraussichtlicher Strompreis</div>
+          <div class="big"><span id="blended">–</span> <small>ct/kWh</small></div>
         </div>
         <div class="kenndaten">
-          <div class="kd"><dt>Arbeitspreis</dt><dd><span id="blended">–</span> <em>ct/kWh</em></dd></div>
           <div class="kd"><dt>Grundpreis</dt><dd><span id="grundAnnualM">–</span> <em>€/Monat</em></dd></div>
           <div class="kd"><dt>Zahle im Monat</dt><dd><span id="totalMonthly">–</span> <em>€</em></dd></div>
         </div>
       </div>
-      <div class="sub">statt aktuell <span id="istPriceOut">–</span> ct/kWh</div>
+
+      <!-- Ersparnis ist optional (hängt vom eingegebenen Ist-Strompreis ab) —
+           nicht mehr die Headline-Zahl, sondern klar sekundär (Team-Feedback). -->
+      <div class="ersparnis-hint" id="ersparnisHint">
+        <span class="tag-optional">Optional</span>
+        Ihre voraussichtliche Ersparnis: <b id="save">–</b> /Jahr
+        <span class="sub-inline">statt aktuell <span id="istPriceOut">–</span> ct/kWh</span>
+      </div>
 
       <div class="preis-bloecke">
         <div class="pb pb-tot"><dt>Kumulierter Preis</dt><dd id="pbKumuliert">–</dd></div>
@@ -248,8 +254,8 @@
   </div>
 
   <div class="foot">
-    Unverbindliche Indikation · Ein Angebot von Robin Gut Strom in Zusammenarbeit mit We Share Energy.
-    Verbindliche Preise und Vertragsabschluss ausschließlich über die offiziellen Kanäle von Robin Gut Strom.
+    Unverbindliche Indikation · Ein Angebot von ROBIN GUT Strom in Zusammenarbeit mit We Share Energy.
+    Verbindliche Preise und Vertragsabschluss ausschließlich über die offiziellen Kanäle von ROBIN GUT Strom.
   </div>
 </div>
 

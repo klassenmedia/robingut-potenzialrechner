@@ -1,45 +1,102 @@
 :root{
-  --fg:#17301b;--muted:#5f6f61;--line:#dbe6d6;--bg:#f4f8f2;--card:#fff;
-  --green:#0e670e;--green-d:#0a4d0a;--green-t:#e6f0e6;--rest:#a8823f;--rest-t:#f3ebdd;--netz-t:#eef1ee;
+  /* Markenfarben von robin-gut.org: Limettengrün #a4d235 (Primär), #95bf2f
+     (Hover/dunkler), Erdbraun #3e3118 (Text/Rahmen). Tiefe entsteht über die
+     Spannweite Limette → Waldgrün, das Braun bindet es warm ein. */
+  --lime:#a4d235;--lime-d:#95bf2f;--lime-l:#bde055;--lime-t:#f2f9e2;
+  --forest:#3f6b1f;--forest-d:#2c4d15;
+  --earth:#3e3118;--earth-l:#6b5836;
+  --fg:#2a2d22;--muted:#6b7263;--line:#e6ebdb;--bg:#f2f5ea;--card:#fff;
+  --ink:#20240f;
+  /* Alias-Namen, damit bestehende Regeln weiterlaufen. */
+  --green:#7fae2a;--green-d:#4d7a1c;--green-l:var(--lime);--green-t:var(--lime-t);--green-glow:#c9ee6a;
+  --mint:#bde055;--sage:#a8bd85;--teal:#4d7a1c;
+  --rest:#a8823f;--rest-t:#f6efe3;--netz-t:#eef1ee;
+  --shadow-sm:0 1px 2px rgba(45,42,25,.05), 0 2px 6px rgba(45,42,25,.04);
+  --shadow-md:0 2px 4px rgba(45,42,25,.05), 0 10px 24px -8px rgba(45,42,25,.13);
+  --shadow-lg:0 4px 10px rgba(45,42,25,.07), 0 24px 48px -14px rgba(45,42,25,.20);
+  --radius:16px;
 }
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);font-family:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  color:var(--fg);line-height:1.45;padding:22px;}
-.wrap{max-width:960px;margin:0 auto;}
+body{margin:0;line-height:1.45;padding:26px 20px 40px;color:var(--fg);
+  font-family:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  background:
+    radial-gradient(1000px 480px at 8% -10%, #ffffff 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(760px 420px at 96% 2%, #e8f4cd 0%, rgba(232,244,205,0) 58%),
+    radial-gradient(680px 380px at 78% 96%, #eef3e0 0%, rgba(238,243,224,0) 60%),
+    var(--bg);
+  background-attachment:fixed;}
+.wrap{max-width:980px;margin:0 auto;}
 
-.head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:4px;}
-.title{font-size:22px;font-weight:700;letter-spacing:-.01em;}
-.title span{color:var(--green);}
+.head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+.title{font-size:25px;font-weight:800;letter-spacing:-.024em;color:var(--ink);}
+/* "GUT" als Farbverlauf statt Flächengrün — setzt einen Akzent, ohne dass
+   die ganze Seite grün wirkt. */
+.title span{background:linear-gradient(100deg,var(--mint),var(--green-l) 45%,var(--teal));
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
 .tag{font-size:12.5px;color:var(--muted);}
 
-.steps{margin-top:18px;}
-.step{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px;margin-bottom:16px;}
-.step h2{margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
-  display:flex;align-items:center;gap:8px;}
-.step h2 .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;
-  background:var(--green);color:#fff;font-size:11px;font-weight:700;}
+.steps{margin-top:20px;}
+/* Karten mit echter Tiefe: heller Innenrand oben + gestufter Schatten erzeugt
+   den "angehobenen" 3D-Eindruck ohne Skeuomorphismus. Beim Hover hebt die
+   Karte leicht an und bekommt einen farbigen Rand. */
+.step{position:relative;background:linear-gradient(180deg,#fff 0%,#fcfdf8 100%);
+  border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;margin-bottom:14px;
+  box-shadow:var(--shadow-md), inset 0 1px 0 #fff;
+  transition:box-shadow .25s ease, border-color .25s ease, transform .25s ease;}
+.step:hover{border-color:#d3e0ab;box-shadow:var(--shadow-lg), inset 0 1px 0 #fff;transform:translateY(-2px);}
+/* Farbiger Akzentstreifen am oberen Rand, erscheint beim Hover. */
+.step::after{content:"";position:absolute;top:-1px;left:22px;right:22px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--teal),var(--green-l) 50%,var(--mint));opacity:0;transition:opacity .25s ease;}
+.step:hover::after{opacity:1;}
+.step h2{margin:0 0 14px;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:9px;}
+.step h2 .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;
+  background:linear-gradient(160deg,var(--green-l),var(--green-d));color:#fff;font-size:11px;font-weight:800;
+  box-shadow:0 2px 5px rgba(93,130,28,.32), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;}
+.step:hover h2 .num{transform:scale(1.12) rotate(-6deg);box-shadow:0 4px 10px rgba(93,130,28,.38), inset 0 1px 0 rgba(255,255,255,.4);}
 
-.tabs{display:flex;gap:6px;background:var(--green-t);padding:5px;border-radius:11px;}
-.tab{flex:1;border:0;background:transparent;padding:9px 10px;border-radius:999px;font-size:14px;font-weight:600;
-  color:var(--green-d);cursor:pointer;}
-.tab.on{background:var(--card);box-shadow:0 1px 3px rgba(0,0,0,.08);color:var(--fg);}
+.tabs{display:flex;gap:5px;background:linear-gradient(180deg,#e9edda,#f3f6e9);padding:5px;border-radius:13px;
+  box-shadow:inset 0 2px 6px rgba(45,42,25,.10);}
+.tab{position:relative;flex:1;border:0;background:transparent;padding:10px;border-radius:10px;font-size:14px;
+  font-weight:700;color:var(--muted);cursor:pointer;
+  transition:background .2s ease,box-shadow .2s ease,transform .18s cubic-bezier(.34,1.56,.64,1),color .2s ease;}
+.tab:hover:not(.on){background:rgba(255,255,255,.72);color:var(--fg);transform:translateY(-1px);}
+.tab.on{background:#fff;color:var(--ink);
+  box-shadow:0 1px 2px rgba(45,42,25,.10), 0 6px 14px -4px rgba(45,42,25,.18), inset 0 1px 0 #fff;}
+/* Aktiver Tab bekommt einen grünen Unterstrich als Akzent. */
+.tab.on::after{content:"";position:absolute;left:26%;right:26%;bottom:5px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--green-l),var(--green));}
 
-.seg{display:flex;gap:6px;margin-top:10px;}
-.seg button{flex:1;border:1px solid var(--line);background:#fbfdfb;border-radius:999px;padding:9px;font-size:13px;
-  cursor:pointer;color:var(--fg);font-weight:600;}
-.seg button.on{background:var(--green);border-color:var(--green);color:#fff;}
+.seg{display:flex;gap:7px;margin-top:11px;}
+.seg button{flex:1;border:1px solid var(--line);background:linear-gradient(180deg,#fff,#f8faf0);border-radius:10px;
+  padding:10px;font-size:13px;cursor:pointer;color:var(--fg);font-weight:700;
+  box-shadow:var(--shadow-sm), inset 0 1px 0 #fff;
+  transition:transform .18s cubic-bezier(.34,1.56,.64,1),box-shadow .2s ease,background .2s ease,border-color .2s ease;}
+.seg button:hover:not(.on){transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:#cddca6;}
+.seg button:active:not(.on){transform:translateY(0);}
+.seg button.on{background:linear-gradient(160deg,var(--green-l),var(--green-d));border-color:var(--green-d);color:#fff;
+  box-shadow:0 4px 10px rgba(93,130,28,.30), inset 0 1px 0 rgba(255,255,255,.28);}
 
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media(max-width:760px){.grid{grid-template-columns:1fr;}}
+
+/* PLZ + Jahresverbrauch in einer Zeile — Haupteingabe, Team-Feedback:
+   "Postleitzahl und Verbrauch sollte man in eine Zeile packen". */
+.grid-primary{margin-bottom:2px;}
 
 .field{margin-bottom:13px;}
 .field:last-child{margin-bottom:0;}
 .lab{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:5px;}
 .lab b{font-weight:600;}
 .lab .v{font-variant-numeric:tabular-nums;font-weight:700;color:var(--green-d);}
-.in{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 10px;font-size:14px;
-  font-variant-numeric:tabular-nums;background:#fbfdfb;color:var(--fg);}
-.in:focus{outline:2px solid var(--green);border-color:var(--green);}
+.in{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-size:15px;font-weight:600;
+  font-variant-numeric:tabular-nums;background:#fcfdf8;color:var(--fg);
+  box-shadow:inset 0 2px 4px rgba(45,42,25,.05);
+  transition:border-color .2s ease,box-shadow .2s ease,background .2s ease;}
+.in:hover{border-color:#cddca6;background:#fff;}
+.in:focus{outline:0;border-color:var(--green-l);background:#fff;
+  box-shadow:0 0 0 3px rgba(164,210,53,.30), inset 0 1px 3px rgba(45,42,25,.04);}
 .unit{position:relative;}
 .unit .u{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted);pointer-events:none;}
 input[type=range]{width:100%;accent-color:var(--green);}
@@ -49,37 +106,93 @@ input[type=range]{width:100%;accent-color:var(--green);}
 .plz-status.ok{color:var(--green-d);}
 .plz-status.fallback{color:#9a6a1f;}
 
-details{margin-top:10px;}
-details summary{font-size:12.5px;color:var(--green-d);cursor:pointer;font-weight:600;}
-details .grid{margin-top:10px;}
+/* Eigenes Straßen-Dropdown statt HTML-<datalist> (die filtert browserabhängig
+   unzuverlässig — User-Feedback 03.08.2026). Server-gefiltert per Live-Suche. */
+.strasse-wrap{position:relative;}
+.strasse-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:20;
+  background:var(--card);border:1px solid var(--line);border-radius:8px;
+  box-shadow:0 4px 16px rgba(0,0,0,.12);max-height:240px;overflow-y:auto;}
+.strasse-item{display:block;width:100%;text-align:left;border:0;background:transparent;
+  padding:9px 12px;font-size:14px;color:var(--fg);cursor:pointer;}
+.strasse-item:hover,.strasse-item:focus{background:var(--green-t);outline:none;}
+
+details{margin-top:11px;}
+details summary{font-size:12.5px;color:var(--green-d);cursor:pointer;font-weight:700;
+  padding:8px 11px;border-radius:9px;background:var(--green-t);display:inline-block;
+  list-style:none;transition:background .15s;}
+details summary::-webkit-details-marker{display:none;}
+details summary::before{content:"▸";display:inline-block;margin-right:7px;transition:transform .18s;}
+details[open] summary::before{transform:rotate(90deg);}
+details summary:hover{background:#e8f3cd;transform:translateX(2px);}
+details summary{transition:background .2s ease,transform .2s ease;}
+details .grid{margin-top:12px;}
+.out details summary{background:rgba(255,255,255,.09);}
+.out details summary:hover{background:rgba(255,255,255,.15);}
 
 .badge{display:inline-block;background:var(--rest-t);color:#7a5a20;font-size:11.5px;font-weight:700;padding:4px 10px;
   border-radius:999px;margin-top:8px;}
 .badge.info{background:var(--green-t);color:var(--green-d);}
 
-.out{background:linear-gradient(180deg,#fbfdfb,#f1f7ef);border:1px solid var(--line);border-radius:13px;padding:18px;margin-top:16px;}
-.biglab{font-size:12.5px;color:var(--muted);margin-bottom:2px;}
-.big{font-size:36px;font-weight:800;letter-spacing:-.02em;color:var(--green-d);font-variant-numeric:tabular-nums;line-height:1.1;}
-.big small{font-size:15px;color:var(--muted);font-weight:600;}
+/* Ergebnis-Karte: dunkler, satter Verlauf mit Lichtkante — hebt das Resultat
+   deutlich von den Eingabekarten ab (der visuelle Höhepunkt der Seite). */
+/* Ergebnis-Karte: Verlauf von Tanne über Petrol-Grün — mehrere Grüntöne statt
+   einer Fläche, dazu ein Lichtreflex oben und ein Mint-Schimmer unten rechts. */
+/* Ergebnis-Karte: tiefes Waldgrün mit warmem Erdton-Einschlag, dazu ein
+   Limetten-Schimmer unten rechts — nimmt die Markenfarbe auf, ohne dass die
+   Fläche grell wird. */
+.out{position:relative;overflow:hidden;border-radius:var(--radius);padding:22px;margin-top:16px;
+  background:
+    radial-gradient(120% 90% at 88% 108%, rgba(164,210,53,.22) 0%, rgba(164,210,53,0) 58%),
+    linear-gradient(152deg,#2b4718 0%,#3d6321 44%,#2a4516 78%,#22380f 100%);
+  border:1px solid #34551b;color:#eef5e0;
+  box-shadow:var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.15);}
+.out::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:190px;pointer-events:none;
+  background:radial-gradient(60% 100% at 50% 0%, rgba(255,255,255,.17), rgba(255,255,255,0) 70%);}
+.biglab{font-size:12px;color:#c2d69a;margin-bottom:3px;letter-spacing:.02em;font-weight:600;}
+.big{font-size:44px;font-weight:800;letter-spacing:-.03em;color:#fff;font-variant-numeric:tabular-nums;line-height:1.05;
+  text-shadow:0 2px 12px rgba(0,0,0,.24);}
+.big small{font-size:16px;color:#c2d69a;font-weight:700;letter-spacing:-.01em;}
 .sub{font-size:14px;color:var(--muted);margin-top:4px;}
+
+/* Ersparnis: sekundär, klar als optional markiert (Team-Feedback: hängt vom
+   eingegebenen Ist-Strompreis ab, ist keine gesicherte Kennzahl wie der
+   Strompreis selbst). */
+.ersparnis-hint{position:relative;margin-top:16px;padding:12px 15px;border-radius:12px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);
+  font-size:14px;color:#eef5e0;display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);}
+.ersparnis-hint b{font-variant-numeric:tabular-nums;color:#c9ee6a;font-size:17px;font-weight:800;}
+.ersparnis-hint{transition:background .22s ease,border-color .22s ease;}
+.ersparnis-hint:hover{background:rgba(255,255,255,.13);border-color:rgba(201,238,106,.32);}
+.tag-optional{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  color:#22380f;background:linear-gradient(135deg,#c9ee6a,var(--mint));border-radius:999px;padding:3px 9px;}
+.sub-inline{color:#c2d69a;font-size:12.5px;width:100%;}
 
 /* Ergebnis-Kopf: Ersparnis links, Kenndaten (Arbeitspreis/Grundpreis/Monatskosten)
    rechts sofort sichtbar — nach Verivox-Vorbild, alles auf einen Blick statt hinter
    einem Klick versteckt (Team-Feedback: "das muss sofort erscheinen"). */
-.result-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;}
-.kenndaten{display:flex;gap:20px;flex-wrap:wrap;}
-.kd dt{font-size:11px;color:var(--muted);margin:0 0 3px;}
-.kd dd{margin:0;font-size:18px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--fg);}
-.kd dd em{font-style:normal;font-size:11px;color:var(--muted);font-weight:600;margin-left:2px;}
+.result-head{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;}
+.kenndaten{display:flex;gap:10px;flex-wrap:wrap;}
+.kd{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 14px;
+  backdrop-filter:blur(4px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+  transition:background .22s ease,border-color .22s ease,transform .22s cubic-bezier(.34,1.56,.64,1);}
+.kd:hover{background:rgba(201,238,106,.14);border-color:rgba(201,238,106,.38);transform:translateY(-2px);}
+.kd dt{font-size:10.5px;color:#c2d69a;margin:0 0 3px;font-weight:600;letter-spacing:.02em;}
+.kd dd{margin:0;font-size:19px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:-.01em;}
+.kd dd em{font-style:normal;font-size:11px;color:#c2d69a;font-weight:700;margin-left:3px;}
 
 /* Drei Preis-Blöcke: kumuliert, Community, Reststrom (Team-Feedback). */
-.preis-bloecke{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
+.preis-bloecke{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px;}
 @media(max-width:600px){.preis-bloecke{grid-template-columns:1fr;}}
-.pb{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;}
-.pb dt{font-size:11px;color:var(--muted);margin:0 0 4px;}
-.pb dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--fg);}
-.pb-tot{background:var(--green-t);border-color:var(--green);}
-.pb-tot dd{color:var(--green-d);}
+.pb{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px 14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+  transition:background .22s ease,border-color .22s ease,transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;}
+.pb:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.24);transform:translateY(-3px);
+  box-shadow:0 10px 22px -10px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.16);}
+.pb dt{font-size:10.5px;color:#c2d69a;margin:0 0 5px;font-weight:600;letter-spacing:.02em;}
+.pb dd{margin:0;font-size:18px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;letter-spacing:-.01em;}
+.pb-tot{background:linear-gradient(160deg,rgba(143,232,154,.22),rgba(143,232,154,.10));border-color:rgba(143,232,154,.45);}
+.pb-tot dd{color:#c9ee6a;}
 
 .bars{display:flex;gap:16px;align-items:flex-end;height:132px;margin:16px 0 8px;}
 .bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;height:100%;}
@@ -93,6 +206,17 @@ details .grid{margin-top:10px;}
 .row{display:flex;justify-content:space-between;font-size:13.5px;padding:7px 0;border-top:1px dashed var(--line);}
 .row.tot{border-top:1px solid var(--line);font-weight:700;margin-top:2px;padding-top:9px;}
 .n{font-variant-numeric:tabular-nums;}
+
+/* Innerhalb der dunklen Ergebnis-Karte müssen Text/Linien invertiert werden. */
+.out .row{border-top-color:rgba(255,255,255,.14);color:#dceaba;}
+.out .row.tot{border-top-color:rgba(255,255,255,.24);color:#fff;}
+.out .sub{color:#c2d69a;}
+.out details summary{color:#c9ee6a;}
+.out .legend{color:#c2d69a;}
+.out .bcap{color:#c2d69a;}
+.out .bcap b{color:#fff;}
+.out .bar .b{background:rgba(255,255,255,.13);color:#dceaba;}
+.out .note{color:#c2d69a;}
 
 .foot{font-size:11.5px;color:var(--muted);margin-top:20px;border-top:1px solid var(--line);padding-top:14px;}
 .hide{display:none !important;}
@@ -151,4 +275,54 @@ details .grid{margin-top:10px;}
 .lg-match{color:var(--green-d);font-size:12.5px;font-weight:700;}
 .lg-mismatch{color:#a33a1e;font-size:12.5px;font-weight:700;}
 
-.lg-fahrplan{margin-top:14px;padding:13px 14px;background:#fbfdfb;border:1px solid var(--line);border-radius:10px;}
+.lg-fahrplan-trigger{margin-top:16px;}
+.lg-fahrplan-btn{border:0;background:var(--green);color:#fff;font-size:14px;font-weight:600;
+  padding:11px 22px;border-radius:999px;cursor:pointer;}
+.lg-fahrplan-btn:hover{background:var(--green-d);}
+.lg-fahrplan-btn:disabled{background:var(--muted);cursor:not-allowed;}
+
+.btn-primary{border:0;background:linear-gradient(160deg,var(--green-l),var(--green-d));color:#fff;
+  font-size:15px;font-weight:700;letter-spacing:-.01em;padding:13px 22px;border-radius:12px;cursor:pointer;
+  margin-top:14px;width:100%;
+  box-shadow:0 3px 8px rgba(10,77,10,.28), 0 10px 22px -8px rgba(10,77,10,.40), inset 0 1px 0 rgba(255,255,255,.26);
+  transition:transform .12s,box-shadow .18s,filter .18s;}
+.btn-primary:hover{transform:translateY(-1px);filter:brightness(1.06);
+  box-shadow:0 5px 12px rgba(10,77,10,.32), 0 16px 30px -10px rgba(10,77,10,.44), inset 0 1px 0 rgba(255,255,255,.3);}
+.btn-primary:active{transform:translateY(0);box-shadow:0 2px 5px rgba(10,77,10,.30), inset 0 2px 5px rgba(0,0,0,.16);}
+.btn-primary:disabled{background:#93a596;box-shadow:none;cursor:not-allowed;transform:none;filter:none;}
+
+.btn-ghost{background:transparent;color:var(--green-d);border:1px solid var(--green);margin-left:8px;}
+.btn-ghost:hover{background:var(--green-t);}
+
+/* Laufzeit-Vergleich: drei Karten nebeneinander, die günstigste deutlich
+   hervorgehoben (User-Vorgabe: "das Paket, das den besseren Preis hat,
+   als Empfehlung farblich hervorheben"). */
+.laufzeiten{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;}
+@media(max-width:620px){.laufzeiten{grid-template-columns:1fr;}}
+.lz{position:relative;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+  border-radius:14px;padding:16px 15px 14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
+  transition:transform .24s cubic-bezier(.34,1.56,.64,1),box-shadow .24s ease,background .24s ease,border-color .24s ease;}
+.lz:not(.lz-best):hover{transform:translateY(-4px);background:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.26);box-shadow:0 14px 30px -14px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.16);}
+.lz-titel{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#c2d69a;margin-bottom:8px;}
+.lz-preis{font-size:30px;font-weight:800;letter-spacing:-.025em;color:#fff;font-variant-numeric:tabular-nums;line-height:1.05;}
+.lz-preis small{font-size:13px;font-weight:700;color:#c2d69a;margin-left:3px;}
+.lz-alt{font-size:12px;color:#c2d69a;margin-top:5px;font-variant-numeric:tabular-nums;}
+.lz-zeile{display:flex;justify-content:space-between;font-size:12.5px;color:#dceaba;margin-top:9px;
+  padding-top:9px;border-top:1px dashed rgba(255,255,255,.16);font-variant-numeric:tabular-nums;}
+
+.lz-best{background:linear-gradient(160deg,rgba(201,238,106,.26),rgba(164,210,53,.11));
+  border-color:#c9ee6a;transform:translateY(-4px);
+  box-shadow:0 12px 30px -10px rgba(201,238,106,.55), inset 0 1px 0 rgba(255,255,255,.22);}
+.lz-best:hover{transform:translateY(-7px);
+  box-shadow:0 18px 42px -12px rgba(201,238,106,.70), inset 0 1px 0 rgba(255,255,255,.28);}
+.lz-best .lz-preis{color:#c9ee6a;}
+.lz-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);white-space:nowrap;
+  background:linear-gradient(135deg,#c9ee6a,var(--mint));color:#22380f;
+  font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+  padding:4px 11px;border-radius:999px;box-shadow:0 4px 10px rgba(0,0,0,.28);}
+
+.lg-fahrplan-status{display:flex;align-items:center;gap:9px;margin-top:9px;font-size:12.5px;color:var(--muted);}
+.lg-spinner{width:14px;height:14px;border-radius:50%;border:2px solid var(--line);
+  border-top-color:var(--green);animation:lg-spin .7s linear infinite;flex:none;}
+@keyframes lg-spin{to{transform:rotate(360deg);}}
